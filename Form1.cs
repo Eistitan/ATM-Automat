@@ -6,6 +6,7 @@ namespace ATM_Automat
     {
         ATM_Programm pro1 = new ATM_Programm();
         List<Konto> list;
+        Konto temp_Konto;
         public Form1()
         {
             InitializeComponent();
@@ -29,6 +30,10 @@ namespace ATM_Automat
                     pan_inter.Visible = true;
                     pan_autor.Visible = false;
                     MessageBox.Show("Angemeldet");
+                    temp_Konto = k;
+                    tB_Kontonummer.Text = String.Empty;
+                    tB_pin.Text = String.Empty;
+                    tB_Kontonummer.ReadOnly= true; //<<<<<<<<<<<<<<<<<<<<
                 }
                 else
                 {
@@ -39,49 +44,70 @@ namespace ATM_Automat
 
         private void bt_kontostand_Click(object sender, EventArgs e)
         {
-            lb_kontostand.Text = Aktives_Konto().Kontostand_Abrufen().ToString();
+            lb_kontostand.Text = temp_Konto.Kontostand_Abrufen().ToString();
         }
 
         private void bt_Einzahlen_Click(object sender, EventArgs e)
         {
-            double einzahlung = double.Parse(tb_money.Text);
-            bool isTrue = Aktives_Konto().Einzahlen(einzahlung);
-            if (isTrue)
+            bool dau = double.TryParse(tb_money.Text, out double einzahlung);
+            if (dau)
             {
-                tb_money.Text = String.Empty;
-                MessageBox.Show($"Einzahlung von {einzahlung} Euro erfolgreich.");
-                lb_kontostand.Text = Aktives_Konto().Kontostand_Abrufen().ToString();
+                bool isTrue = temp_Konto.Einzahlen(einzahlung);
+                if (isTrue)
+                {
+                    tb_money.Text = String.Empty;
+                    MessageBox.Show($"Einzahlung von {einzahlung} Euro erfolgreich.");
+                    lb_kontostand.Text = temp_Konto.Kontostand_Abrufen().ToString();
+                }
+                else
+                {
+                    tb_money.Text = String.Empty;
+                    MessageBox.Show($"Einzahlung ist fehlgeschlagen");
+                    lb_kontostand.Text = temp_Konto.Kontostand_Abrufen().ToString();
+                }
             }
             else
             {
-                tb_money.Text = String.Empty;
-                MessageBox.Show($"Einzahlung ist fehlgeschlagen");
-                lb_kontostand.Text = Aktives_Konto().Kontostand_Abrufen().ToString();
+                MessageBox.Show("Wert ist falsch.");
             }
         }
 
         private void bt_Abheben_Click(object sender, EventArgs e)
         {
-            double auszahlung = double.Parse(tb_money.Text);
-            bool isTrue=Aktives_Konto().Auszahlung(auszahlung);
-            if (isTrue)
+            bool dau = double.TryParse(tb_money.Text, out double auszahlung);
+            if (dau)
             {
-                tb_money.Text = String.Empty;
-                MessageBox.Show($"Auszahlung von {auszahlung} Euro erfolgreich.");
-                lb_kontostand.Text = Aktives_Konto().Kontostand_Abrufen().ToString();
+
+                bool isTrue = temp_Konto.Auszahlung(auszahlung);
+                if (isTrue)
+                {
+                    tb_money.Text = String.Empty;
+                    MessageBox.Show($"Auszahlung von {auszahlung} Euro erfolgreich.");
+                    lb_kontostand.Text = temp_Konto.Kontostand_Abrufen().ToString();
+                }
+                else
+                {
+                    tb_money.Text = String.Empty;
+                    MessageBox.Show($"Auszahlung ist fehlgeschlagen, zu wenig Geld auf dem Konto.");
+                    lb_kontostand.Text = temp_Konto.Kontostand_Abrufen().ToString();
+                }
             }
             else
             {
-                tb_money.Text = String.Empty;
-                MessageBox.Show($"Auszahlung ist fehlgeschlagen, zu wenig Geld auf dem Konto.");
-                lb_kontostand.Text = Aktives_Konto().Kontostand_Abrufen().ToString();
+                MessageBox.Show("Wert ist falsch.");
             }
         }
-        private Konto Aktives_Konto() //Sicherheitsrisiko
+
+        private void bt_Abmelden_Click(object sender, EventArgs e)
         {
-            int kontonummer = Int32.Parse(tB_Kontonummer.Text);
-            Konto k = pro1.Konto_Finden(kontonummer);
-            return k;
+            pan_inter.Visible = false;
+            pan_autor.Visible = true;
+            MessageBox.Show("Abgemeldet");
+            temp_Konto = null;
+            tB_Kontonummer.Text = String.Empty;
+            tB_pin.Text = String.Empty;
+            lb_kontostand.Text = String.Empty;
+            tB_Kontonummer.ReadOnly = false; //<<<<<<<<<<<<<<<<<<<<
         }
     }
 }

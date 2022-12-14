@@ -41,6 +41,7 @@
             this.lb_Kontonummer = new System.Windows.Forms.Label();
             this.tB_Kontonummer = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.bt_Abmelden = new System.Windows.Forms.Button();
             this.pan_inter.SuspendLayout();
             this.pan_autor.SuspendLayout();
             this.SuspendLayout();
@@ -94,6 +95,7 @@
             // 
             // pan_inter
             // 
+            this.pan_inter.Controls.Add(this.bt_Abmelden);
             this.pan_inter.Controls.Add(this.lb_kontostand);
             this.pan_inter.Controls.Add(this.label2);
             this.pan_inter.Controls.Add(this.tb_money);
@@ -167,6 +169,16 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "PIN-Code eingeben und mit OK bestätigen";
             // 
+            // bt_Abmelden
+            // 
+            this.bt_Abmelden.Location = new System.Drawing.Point(749, 323);
+            this.bt_Abmelden.Name = "bt_Abmelden";
+            this.bt_Abmelden.Size = new System.Drawing.Size(150, 46);
+            this.bt_Abmelden.TabIndex = 7;
+            this.bt_Abmelden.Text = "Abmelden";
+            this.bt_Abmelden.UseVisualStyleBackColor = true;
+            this.bt_Abmelden.Click += new System.EventHandler(this.bt_Abmelden_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
@@ -199,5 +211,6 @@
         private Label label1;
         private Label lb_Kontonummer;
         private TextBox tB_Kontonummer;
+        private Button bt_Abmelden;
     }
 }
