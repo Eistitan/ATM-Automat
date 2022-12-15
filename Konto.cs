@@ -10,43 +10,62 @@ namespace ATM_Automat
     {
         double kontostand;
         int kontonummer;
+        int pin;
         User user;
 
         public int Kontonummer { get => kontonummer; private set => kontonummer = value; }
+        internal User User { get => user; private set => user = value; }
+        public int Pin { get => pin; private set => pin = value; }
+        public double Kontostand { get => kontostand; private set => kontostand = value; }
 
-        public Konto(double kontostand,int kontonummer, User user)
+        public Konto(double kontostand,int kontonummer,int pin, User user)
         {
             this.Kontonummer = kontonummer;
-            this.kontostand = kontostand;
-            this.user = user;
+            this.Pin = pin;
+            this.Kontostand = kontostand;
+            this.User = user;
         }
 
-        public bool PIN_Check(int pin)
+        static List<Konto> konto_Liste = new List<Konto>();
+        public static Konto Konto_hinzufuegen(User u, double kontostand, int pin,int kontonr)
+        {
+            Konto u_konto = new(kontostand, Excel_A.Ablesen_Konto_Freie_Position()-1, pin,u);
+            return u_konto;
+        }
+        //public static List<Konto> Liste_Konto_Erstellen()
+        //{   //TEst
+        //    konto_Liste.Add(new Konto(50,1,1,new User(1,1,true)));
+        //    konto_Liste.Add(new Konto(50,2,2,new User(2,2,false)));
+
+        //    return konto_Liste;
+        //}
+
+        public bool PIN_Check(int check_pin)
         {
             bool isTrue = false;
-            if (pin == user.Pin)
+            if (check_pin == Pin) //
                 isTrue = true;
             return isTrue;
         }
 
         public double Kontostand_Abrufen()
         {
-            return kontostand;
+            return Kontostand;
         }
 
         public bool Einzahlen(double einzahlung)
         {
             bool isTrue = false;
-            kontostand = kontostand + einzahlung;
+            Kontostand = Kontostand + einzahlung;
             return isTrue = true;
         }
 
         public bool Auszahlung(double auszahlung)
         {
             bool isTrue = false;
-            if ((kontostand + user.Ueberzug()) >= auszahlung)
+            if ((Kontostand + User.Ueberzug()) >= auszahlung)
             {
-                kontostand = kontostand - auszahlung;
+                Kontostand = Kontostand - auszahlung;
                 isTrue = true;
             }
             return isTrue;
