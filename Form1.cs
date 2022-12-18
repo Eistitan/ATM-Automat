@@ -33,6 +33,7 @@ namespace ATM_Automat
                     tB_Kontonummer.Text = String.Empty;
                     tB_pin.Text = String.Empty;
                     tB_Kontonummer.ReadOnly = true; //<<<<<<<<<<<<<<<<<<<<
+                    pan_auswahl.Visible = false;
                 }
                 else
                 {
@@ -92,6 +93,51 @@ namespace ATM_Automat
                 MessageBox.Show("Wert ist falsch.");
             }
         }
+        private void bt_ueberweisen_Click(object sender, EventArgs e)
+        {
+            int ueberweisungID = Int32.Parse(tB_ueberweisung.Text);
+
+            bool dau = double.TryParse(tb_money.Text, out double ueberweisung);
+            if (dau)
+            {
+                bool isTrue = temp_Konto.Auszahlung(ueberweisung);
+                if (isTrue)
+                {
+                    Konto k = ATM_Programm.Konto_Finden(ueberweisungID, list);
+                    if (k is not null)
+                    {
+                        k.Einzahlen(ueberweisung);
+                        temp_Konto.Auszahlung(ueberweisung);
+                        Excel_A.Kontostand_Speichern(k);
+                        Excel_A.Kontostand_Speichern(temp_Konto);
+                        tb_money.Text = String.Empty;
+                        tB_ueberweisung.Text = String.Empty;
+                        MessageBox.Show($"Auszahlung von {ueberweisung} Euro erfolgreich.");
+                        lb_kontostand.Text = temp_Konto.Kontostand_Abrufen().ToString();
+                        DateTime datum = DateTime.Now;
+                        using (StreamWriter sw = new("Uebrweisungen.txt", true))
+                        {
+                            sw.WriteLine($"{temp_Konto.Kontonummer} überweist an {k.Kontonummer} am {datum} den Betrag von {ueberweisung} Euro");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Konto {ueberweisungID} wurde nicht gefunden");
+
+                    }
+                }
+                else
+                {
+                    tb_money.Text = String.Empty;
+                    MessageBox.Show($"Auszahlung ist fehlgeschlagen, zu wenig Geld auf dem Konto.");
+                    lb_kontostand.Text = temp_Konto.Kontostand_Abrufen().ToString();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Wert ist falsch.");
+            }
+        }
         private void bt_Abmelden_Click(object sender, EventArgs e)
         {
             Excel_A.Kontostand_Speichern(temp_Konto);
@@ -103,6 +149,7 @@ namespace ATM_Automat
             tB_pin.Text = String.Empty;
             lb_kontostand.Text = String.Empty;
             tB_Kontonummer.ReadOnly = false; //<<<<<<<<<<<<<<<<<<<<
+            pan_auswahl.Visible = true;
         }
         private void bt_kunde_Click(object sender, EventArgs e)
         {
@@ -138,6 +185,7 @@ namespace ATM_Automat
                     tB_admin_login.Text = String.Empty;
                     tB_admin_pass.Text = String.Empty;
                     //tB_Kontonummer.ReadOnly = true; //<<<<<<<<<<<<<<<<<<<<
+                    pan_auswahl.Visible = false;
                 }
                 else
                 {
@@ -154,6 +202,7 @@ namespace ATM_Automat
             pan_administration.Visible = false;
             pan_adm_login.Visible = false;
             pan_auswahl.Visible = true;
+            listBox1.Items.Clear();
         }
         private void bt_ad_kunden_anlegen_Click(object sender, EventArgs e)
         {
@@ -185,8 +234,9 @@ namespace ATM_Automat
             pan_kunden_erstellen.Visible = false;
         }
         private void bt_ad_kunden_uebersicht_Click(object sender, EventArgs e)
-        {
+        {   //todo refresh Funktion einfügen
             pan_listbox.Visible = true;
+            listBox1.Items.Clear();
             List<User> liste_archiv = Excel_A.Liste_Kunden_Auslesen();
             for (int i = 0; i < liste_archiv.Count; i++)
                 listBox1.Items.Add($"Index {i + 1}) ID: {liste_archiv[i].User_ID.ToString()}, Premium: {liste_archiv[i].IsPremium.ToString()}");
@@ -194,6 +244,7 @@ namespace ATM_Automat
         private void bt_ad_konto_uebersicht_Click(object sender, EventArgs e)
         {
             pan_listbox.Visible = true;
+            listBox1.Items.Clear();
             List<Konto> liste_archiv = Excel_A.Liste_Konto_Auslesen();
             for (int i = 0; i < liste_archiv.Count; i++)
                 listBox1.Items.Add($"Index {i + 1}) Kontonummer: {liste_archiv[i].Kontonummer.ToString()}, Betrag: {liste_archiv[i].Kontostand.ToString()}, Kunde: {liste_archiv[i].User.User_ID.ToString()}");
@@ -232,4 +283,5 @@ namespace ATM_Automat
             pan_konto_erstellen.Visible = false;
         }
     }
+
 }

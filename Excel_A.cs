@@ -149,7 +149,7 @@ namespace ATM_Automat
         {
             int i = Ablesen_Kunden_Freie_Position();//der LeerePlatz
             Excel_Kunden_Oeffnen();
-
+            //todo Delete Bool einfügen. Klassen anpassen
             for (int j = 1; j < 4; j++)
             {
                 switch (j)
@@ -170,7 +170,6 @@ namespace ATM_Automat
         }
         public static void Excel_Konto_Eintragen(Konto k)
         {
-
             int i = Ablesen_Konto_Freie_Position();
             Excel_Konten_Oeffnen();
 

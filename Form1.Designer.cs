@@ -34,18 +34,12 @@
             this.bt_Abheben = new System.Windows.Forms.Button();
             this.bt_OK = new System.Windows.Forms.Button();
             this.pan_inter = new System.Windows.Forms.Panel();
+            this.bt_ueberweisen = new System.Windows.Forms.Button();
+            this.tB_ueberweisung = new System.Windows.Forms.TextBox();
             this.bt_Abmelden = new System.Windows.Forms.Button();
             this.lb_kontostand = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pan_auswahl = new System.Windows.Forms.Panel();
-            this.pan_administration = new System.Windows.Forms.Panel();
-            this.bt_ad_abmelden = new System.Windows.Forms.Button();
-            this.bt_ad_konto_uebersicht = new System.Windows.Forms.Button();
-            this.bt_ad_konto_loeschen = new System.Windows.Forms.Button();
-            this.bt_ad_konto_anlegen = new System.Windows.Forms.Button();
-            this.bt_ad_kunden_uebersicht = new System.Windows.Forms.Button();
-            this.bt_ad_kunden_loeschen = new System.Windows.Forms.Button();
-            this.bt_ad_kunden_anlegen = new System.Windows.Forms.Button();
             this.bt_admin = new System.Windows.Forms.Button();
             this.bt_kunde = new System.Windows.Forms.Button();
             this.pan_adm_login = new System.Windows.Forms.Panel();
@@ -55,6 +49,14 @@
             this.pan_autor = new System.Windows.Forms.Panel();
             this.tB_Kontonummer = new System.Windows.Forms.TextBox();
             this.tB_pin = new System.Windows.Forms.TextBox();
+            this.pan_administration = new System.Windows.Forms.Panel();
+            this.bt_ad_abmelden = new System.Windows.Forms.Button();
+            this.bt_ad_konto_uebersicht = new System.Windows.Forms.Button();
+            this.bt_ad_konto_loeschen = new System.Windows.Forms.Button();
+            this.bt_ad_konto_anlegen = new System.Windows.Forms.Button();
+            this.bt_ad_kunden_uebersicht = new System.Windows.Forms.Button();
+            this.bt_ad_kunden_loeschen = new System.Windows.Forms.Button();
+            this.bt_ad_kunden_anlegen = new System.Windows.Forms.Button();
             this.pan_kunden_erstellen = new System.Windows.Forms.Panel();
             this.bt_erstellen_user_exit = new System.Windows.Forms.Button();
             this.bt_user_erstellen = new System.Windows.Forms.Button();
@@ -71,13 +73,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tB_erstellen_konto_pin = new System.Windows.Forms.TextBox();
             this.tB_erstellen_konto_UserID = new System.Windows.Forms.TextBox();
-            this.tB_ueberweisung = new System.Windows.Forms.TextBox();
-            this.bt_ueberweisen = new System.Windows.Forms.Button();
             this.pan_inter.SuspendLayout();
             this.pan_auswahl.SuspendLayout();
-            this.pan_administration.SuspendLayout();
             this.pan_adm_login.SuspendLayout();
             this.pan_autor.SuspendLayout();
+            this.pan_administration.SuspendLayout();
             this.pan_kunden_erstellen.SuspendLayout();
             this.pan_listbox.SuspendLayout();
             this.pan_konto_erstellen.SuspendLayout();
@@ -148,6 +148,24 @@
             this.pan_inter.TabIndex = 6;
             this.pan_inter.Visible = false;
             // 
+            // bt_ueberweisen
+            // 
+            this.bt_ueberweisen.Location = new System.Drawing.Point(692, 48);
+            this.bt_ueberweisen.Name = "bt_ueberweisen";
+            this.bt_ueberweisen.Size = new System.Drawing.Size(150, 46);
+            this.bt_ueberweisen.TabIndex = 9;
+            this.bt_ueberweisen.Text = "Überweisen";
+            this.bt_ueberweisen.UseVisualStyleBackColor = true;
+            this.bt_ueberweisen.Click += new System.EventHandler(this.bt_ueberweisen_Click);
+            // 
+            // tB_ueberweisung
+            // 
+            this.tB_ueberweisung.Location = new System.Drawing.Point(328, 52);
+            this.tB_ueberweisung.Name = "tB_ueberweisung";
+            this.tB_ueberweisung.PlaceholderText = "KontoNr";
+            this.tB_ueberweisung.Size = new System.Drawing.Size(200, 39);
+            this.tB_ueberweisung.TabIndex = 8;
+            // 
             // bt_Abmelden
             // 
             this.bt_Abmelden.Location = new System.Drawing.Point(692, 154);
@@ -161,7 +179,7 @@
             // lb_kontostand
             // 
             this.lb_kontostand.AutoSize = true;
-            this.lb_kontostand.Location = new System.Drawing.Point(787, 189);
+            this.lb_kontostand.Location = new System.Drawing.Point(212, 238);
             this.lb_kontostand.Name = "lb_kontostand";
             this.lb_kontostand.Size = new System.Drawing.Size(0, 32);
             this.lb_kontostand.TabIndex = 6;
@@ -177,98 +195,14 @@
             // 
             // pan_auswahl
             // 
-            this.pan_auswahl.Controls.Add(this.pan_administration);
             this.pan_auswahl.Controls.Add(this.bt_admin);
             this.pan_auswahl.Controls.Add(this.bt_kunde);
-            this.pan_auswahl.Controls.Add(this.pan_autor);
             this.pan_auswahl.Controls.Add(this.pan_adm_login);
-            this.pan_auswahl.Location = new System.Drawing.Point(184, 554);
+            this.pan_auswahl.Controls.Add(this.pan_autor);
+            this.pan_auswahl.Location = new System.Drawing.Point(154, 563);
             this.pan_auswahl.Name = "pan_auswahl";
-            this.pan_auswahl.Size = new System.Drawing.Size(1247, 514);
+            this.pan_auswahl.Size = new System.Drawing.Size(1276, 256);
             this.pan_auswahl.TabIndex = 8;
-            // 
-            // pan_administration
-            // 
-            this.pan_administration.Controls.Add(this.bt_ad_abmelden);
-            this.pan_administration.Controls.Add(this.bt_ad_konto_uebersicht);
-            this.pan_administration.Controls.Add(this.bt_ad_konto_loeschen);
-            this.pan_administration.Controls.Add(this.bt_ad_konto_anlegen);
-            this.pan_administration.Controls.Add(this.bt_ad_kunden_uebersicht);
-            this.pan_administration.Controls.Add(this.bt_ad_kunden_loeschen);
-            this.pan_administration.Controls.Add(this.bt_ad_kunden_anlegen);
-            this.pan_administration.Location = new System.Drawing.Point(42, 252);
-            this.pan_administration.Name = "pan_administration";
-            this.pan_administration.Size = new System.Drawing.Size(1182, 247);
-            this.pan_administration.TabIndex = 9;
-            this.pan_administration.Visible = false;
-            // 
-            // bt_ad_abmelden
-            // 
-            this.bt_ad_abmelden.Location = new System.Drawing.Point(820, 47);
-            this.bt_ad_abmelden.Name = "bt_ad_abmelden";
-            this.bt_ad_abmelden.Size = new System.Drawing.Size(150, 46);
-            this.bt_ad_abmelden.TabIndex = 9;
-            this.bt_ad_abmelden.Text = "Abmelden";
-            this.bt_ad_abmelden.UseVisualStyleBackColor = true;
-            this.bt_ad_abmelden.Click += new System.EventHandler(this.bt_ad_abmelden_Click);
-            // 
-            // bt_ad_konto_uebersicht
-            // 
-            this.bt_ad_konto_uebersicht.Location = new System.Drawing.Point(403, 184);
-            this.bt_ad_konto_uebersicht.Name = "bt_ad_konto_uebersicht";
-            this.bt_ad_konto_uebersicht.Size = new System.Drawing.Size(293, 46);
-            this.bt_ad_konto_uebersicht.TabIndex = 8;
-            this.bt_ad_konto_uebersicht.Text = "Kontenübersicht";
-            this.bt_ad_konto_uebersicht.UseVisualStyleBackColor = true;
-            this.bt_ad_konto_uebersicht.Click += new System.EventHandler(this.bt_ad_konto_uebersicht_Click);
-            // 
-            // bt_ad_konto_loeschen
-            // 
-            this.bt_ad_konto_loeschen.Location = new System.Drawing.Point(403, 116);
-            this.bt_ad_konto_loeschen.Name = "bt_ad_konto_loeschen";
-            this.bt_ad_konto_loeschen.Size = new System.Drawing.Size(293, 46);
-            this.bt_ad_konto_loeschen.TabIndex = 7;
-            this.bt_ad_konto_loeschen.Text = "Konto löschen";
-            this.bt_ad_konto_loeschen.UseVisualStyleBackColor = true;
-            // 
-            // bt_ad_konto_anlegen
-            // 
-            this.bt_ad_konto_anlegen.Location = new System.Drawing.Point(403, 47);
-            this.bt_ad_konto_anlegen.Name = "bt_ad_konto_anlegen";
-            this.bt_ad_konto_anlegen.Size = new System.Drawing.Size(293, 46);
-            this.bt_ad_konto_anlegen.TabIndex = 6;
-            this.bt_ad_konto_anlegen.Text = "Konto anlegen";
-            this.bt_ad_konto_anlegen.UseVisualStyleBackColor = true;
-            this.bt_ad_konto_anlegen.Click += new System.EventHandler(this.bt_ad_konto_anlegen_Click);
-            // 
-            // bt_ad_kunden_uebersicht
-            // 
-            this.bt_ad_kunden_uebersicht.Location = new System.Drawing.Point(35, 184);
-            this.bt_ad_kunden_uebersicht.Name = "bt_ad_kunden_uebersicht";
-            this.bt_ad_kunden_uebersicht.Size = new System.Drawing.Size(283, 46);
-            this.bt_ad_kunden_uebersicht.TabIndex = 5;
-            this.bt_ad_kunden_uebersicht.Text = "Kundenübersicht";
-            this.bt_ad_kunden_uebersicht.UseVisualStyleBackColor = true;
-            this.bt_ad_kunden_uebersicht.Click += new System.EventHandler(this.bt_ad_kunden_uebersicht_Click);
-            // 
-            // bt_ad_kunden_loeschen
-            // 
-            this.bt_ad_kunden_loeschen.Location = new System.Drawing.Point(35, 116);
-            this.bt_ad_kunden_loeschen.Name = "bt_ad_kunden_loeschen";
-            this.bt_ad_kunden_loeschen.Size = new System.Drawing.Size(293, 46);
-            this.bt_ad_kunden_loeschen.TabIndex = 4;
-            this.bt_ad_kunden_loeschen.Text = "Kunden löschen";
-            this.bt_ad_kunden_loeschen.UseVisualStyleBackColor = true;
-            // 
-            // bt_ad_kunden_anlegen
-            // 
-            this.bt_ad_kunden_anlegen.Location = new System.Drawing.Point(35, 47);
-            this.bt_ad_kunden_anlegen.Name = "bt_ad_kunden_anlegen";
-            this.bt_ad_kunden_anlegen.Size = new System.Drawing.Size(293, 46);
-            this.bt_ad_kunden_anlegen.TabIndex = 3;
-            this.bt_ad_kunden_anlegen.Text = "Kunden anlegen";
-            this.bt_ad_kunden_anlegen.UseVisualStyleBackColor = true;
-            this.bt_ad_kunden_anlegen.Click += new System.EventHandler(this.bt_ad_kunden_anlegen_Click);
             // 
             // bt_admin
             // 
@@ -353,6 +287,89 @@
             this.tB_pin.PlaceholderText = "Pin";
             this.tB_pin.Size = new System.Drawing.Size(200, 39);
             this.tB_pin.TabIndex = 5;
+            // 
+            // pan_administration
+            // 
+            this.pan_administration.Controls.Add(this.bt_ad_abmelden);
+            this.pan_administration.Controls.Add(this.bt_ad_konto_uebersicht);
+            this.pan_administration.Controls.Add(this.bt_ad_konto_loeschen);
+            this.pan_administration.Controls.Add(this.bt_ad_konto_anlegen);
+            this.pan_administration.Controls.Add(this.bt_ad_kunden_uebersicht);
+            this.pan_administration.Controls.Add(this.bt_ad_kunden_loeschen);
+            this.pan_administration.Controls.Add(this.bt_ad_kunden_anlegen);
+            this.pan_administration.Location = new System.Drawing.Point(154, 825);
+            this.pan_administration.Name = "pan_administration";
+            this.pan_administration.Size = new System.Drawing.Size(1276, 247);
+            this.pan_administration.TabIndex = 9;
+            this.pan_administration.Visible = false;
+            // 
+            // bt_ad_abmelden
+            // 
+            this.bt_ad_abmelden.Location = new System.Drawing.Point(820, 47);
+            this.bt_ad_abmelden.Name = "bt_ad_abmelden";
+            this.bt_ad_abmelden.Size = new System.Drawing.Size(150, 46);
+            this.bt_ad_abmelden.TabIndex = 9;
+            this.bt_ad_abmelden.Text = "Abmelden";
+            this.bt_ad_abmelden.UseVisualStyleBackColor = true;
+            this.bt_ad_abmelden.Click += new System.EventHandler(this.bt_ad_abmelden_Click);
+            // 
+            // bt_ad_konto_uebersicht
+            // 
+            this.bt_ad_konto_uebersicht.Location = new System.Drawing.Point(403, 184);
+            this.bt_ad_konto_uebersicht.Name = "bt_ad_konto_uebersicht";
+            this.bt_ad_konto_uebersicht.Size = new System.Drawing.Size(293, 46);
+            this.bt_ad_konto_uebersicht.TabIndex = 8;
+            this.bt_ad_konto_uebersicht.Text = "Kontenübersicht";
+            this.bt_ad_konto_uebersicht.UseVisualStyleBackColor = true;
+            this.bt_ad_konto_uebersicht.Click += new System.EventHandler(this.bt_ad_konto_uebersicht_Click);
+            // 
+            // bt_ad_konto_loeschen
+            // 
+            this.bt_ad_konto_loeschen.Location = new System.Drawing.Point(403, 116);
+            this.bt_ad_konto_loeschen.Name = "bt_ad_konto_loeschen";
+            this.bt_ad_konto_loeschen.Size = new System.Drawing.Size(293, 46);
+            this.bt_ad_konto_loeschen.TabIndex = 7;
+            this.bt_ad_konto_loeschen.Text = "Konto löschen";
+            this.bt_ad_konto_loeschen.UseVisualStyleBackColor = true;
+            // 
+            // bt_ad_konto_anlegen
+            // 
+            this.bt_ad_konto_anlegen.Location = new System.Drawing.Point(403, 47);
+            this.bt_ad_konto_anlegen.Name = "bt_ad_konto_anlegen";
+            this.bt_ad_konto_anlegen.Size = new System.Drawing.Size(293, 46);
+            this.bt_ad_konto_anlegen.TabIndex = 6;
+            this.bt_ad_konto_anlegen.Text = "Konto anlegen";
+            this.bt_ad_konto_anlegen.UseVisualStyleBackColor = true;
+            this.bt_ad_konto_anlegen.Click += new System.EventHandler(this.bt_ad_konto_anlegen_Click);
+            // 
+            // bt_ad_kunden_uebersicht
+            // 
+            this.bt_ad_kunden_uebersicht.Location = new System.Drawing.Point(35, 184);
+            this.bt_ad_kunden_uebersicht.Name = "bt_ad_kunden_uebersicht";
+            this.bt_ad_kunden_uebersicht.Size = new System.Drawing.Size(283, 46);
+            this.bt_ad_kunden_uebersicht.TabIndex = 5;
+            this.bt_ad_kunden_uebersicht.Text = "Kundenübersicht";
+            this.bt_ad_kunden_uebersicht.UseVisualStyleBackColor = true;
+            this.bt_ad_kunden_uebersicht.Click += new System.EventHandler(this.bt_ad_kunden_uebersicht_Click);
+            // 
+            // bt_ad_kunden_loeschen
+            // 
+            this.bt_ad_kunden_loeschen.Location = new System.Drawing.Point(35, 116);
+            this.bt_ad_kunden_loeschen.Name = "bt_ad_kunden_loeschen";
+            this.bt_ad_kunden_loeschen.Size = new System.Drawing.Size(293, 46);
+            this.bt_ad_kunden_loeschen.TabIndex = 4;
+            this.bt_ad_kunden_loeschen.Text = "Kunden löschen";
+            this.bt_ad_kunden_loeschen.UseVisualStyleBackColor = true;
+            // 
+            // bt_ad_kunden_anlegen
+            // 
+            this.bt_ad_kunden_anlegen.Location = new System.Drawing.Point(35, 47);
+            this.bt_ad_kunden_anlegen.Name = "bt_ad_kunden_anlegen";
+            this.bt_ad_kunden_anlegen.Size = new System.Drawing.Size(293, 46);
+            this.bt_ad_kunden_anlegen.TabIndex = 3;
+            this.bt_ad_kunden_anlegen.Text = "Kunden anlegen";
+            this.bt_ad_kunden_anlegen.UseVisualStyleBackColor = true;
+            this.bt_ad_kunden_anlegen.Click += new System.EventHandler(this.bt_ad_kunden_anlegen_Click);
             // 
             // pan_kunden_erstellen
             // 
@@ -509,43 +526,27 @@
             this.tB_erstellen_konto_UserID.Size = new System.Drawing.Size(330, 39);
             this.tB_erstellen_konto_UserID.TabIndex = 0;
             // 
-            // tB_ueberweisung
-            // 
-            this.tB_ueberweisung.Location = new System.Drawing.Point(328, 52);
-            this.tB_ueberweisung.Name = "tB_ueberweisung";
-            this.tB_ueberweisung.PlaceholderText = "KontoNr";
-            this.tB_ueberweisung.Size = new System.Drawing.Size(200, 39);
-            this.tB_ueberweisung.TabIndex = 8;
-            // 
-            // bt_ueberweisen
-            // 
-            this.bt_ueberweisen.Location = new System.Drawing.Point(692, 48);
-            this.bt_ueberweisen.Name = "bt_ueberweisen";
-            this.bt_ueberweisen.Size = new System.Drawing.Size(150, 46);
-            this.bt_ueberweisen.TabIndex = 9;
-            this.bt_ueberweisen.Text = "Überweisen";
-            this.bt_ueberweisen.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1553, 1101);
-            this.Controls.Add(this.pan_kunden_erstellen);
-            this.Controls.Add(this.pan_auswahl);
+            this.ClientSize = new System.Drawing.Size(1553, 1228);
             this.Controls.Add(this.pan_inter);
+            this.Controls.Add(this.pan_administration);
             this.Controls.Add(this.pan_listbox);
+            this.Controls.Add(this.pan_auswahl);
             this.Controls.Add(this.pan_konto_erstellen);
+            this.Controls.Add(this.pan_kunden_erstellen);
             this.Name = "Form1";
             this.Text = "ATM";
             this.pan_inter.ResumeLayout(false);
             this.pan_inter.PerformLayout();
             this.pan_auswahl.ResumeLayout(false);
-            this.pan_administration.ResumeLayout(false);
             this.pan_adm_login.ResumeLayout(false);
             this.pan_adm_login.PerformLayout();
             this.pan_autor.ResumeLayout(false);
             this.pan_autor.PerformLayout();
+            this.pan_administration.ResumeLayout(false);
             this.pan_kunden_erstellen.ResumeLayout(false);
             this.pan_kunden_erstellen.PerformLayout();
             this.pan_listbox.ResumeLayout(false);
